@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.moviesearch.R
-import com.example.moviesearch.data.api.ApiFactory
+import com.example.moviesearch.data.network.ApiFactory
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //test api
-        val disposable = ApiFactory.apiService.getTopMovies()
+        val disposable = ApiFactory.apiService.getTopMoviesFromJSON()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()).subscribe({
                 Log.d("TEST API", it.toString())

@@ -1,4 +1,4 @@
-package com.example.moviesearch.data.api
+package com.example.moviesearch.data.network
 
 import com.example.moviesearch.domain.entity.MoviesList
 import io.reactivex.rxjava3.core.Single
@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("discover/movie")
-    fun getTopMovies(
+    fun getTopMoviesFromJSON(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,
         @Query(QUERY_PARAM_LANGUAGE) lang: String = "en-US",
         @Query(QUERY_PARAM_SORT_BY)  sortBy: String = SORT_BY_TOP_RATED,

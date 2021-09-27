@@ -1,4 +1,4 @@
-package com.example.moviesearch.data.api
+package com.example.moviesearch.data.network
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import retrofit2.Retrofit
