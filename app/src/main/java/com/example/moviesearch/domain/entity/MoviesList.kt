@@ -8,6 +8,6 @@ data class MoviesList (
 
     @SerializedName("results")
     @Expose
-    val movies: List<Movie>?,
+    val movies: List<Movie>,
 
 )

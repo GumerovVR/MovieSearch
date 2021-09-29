@@ -1,5 +1,6 @@
 package com.example.moviesearch.domain.entity
 
+import com.example.moviesearch.data.network.ApiService
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
@@ -60,4 +61,16 @@ data class Movie(
     @SerializedName("vote_count")
     @Expose
     val voteCount: Int?
-)
+) {
+    companion object {
+        private const val BASE_URL_POSTER = "https://image.tmdb.org/t/p/"
+        private const val POSTER_SMALL_SIZE = "w185"
+        private const val POSTER_FULL_SIZE = "w780"
+    }
+    fun getSmallSizePosterPatch(): String{
+        return BASE_URL_POSTER + POSTER_SMALL_SIZE + posterPath
+    }
+    fun getFullSizePosterPatch(): String{
+        return BASE_URL_POSTER + POSTER_FULL_SIZE + posterPath
+    }
+}
