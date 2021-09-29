@@ -27,5 +27,6 @@ interface ApiService {
         private const val SORT_BY_POPULARITY = "popularity.desc"
         private const val SORT_BY_TOP_RATED = "vote_average.desc"
         private const val MIN_VOTE_COUNT_VALUE = "1000"
+
     }
 }
