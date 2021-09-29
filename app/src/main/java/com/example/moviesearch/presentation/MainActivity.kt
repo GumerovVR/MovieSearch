@@ -1,20 +1,19 @@
 package com.example.moviesearch.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.moviesearch.R
-import com.example.moviesearch.data.network.ApiFactory
+import com.example.moviesearch.data.network.entities.NetworkMovie
 import com.example.moviesearch.databinding.ActivityMainBinding
-import com.example.moviesearch.domain.entity.Movie
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private val compositeDisposable = CompositeDisposable()
-    private var movieList: ArrayList<Movie> = arrayListOf()
+    private var networkMovieList: ArrayList<NetworkMovie> = arrayListOf()
     private lateinit var binding: ActivityMainBinding
     private lateinit var moviesListAdapter: MoviesListAdapter
 
@@ -22,31 +21,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //test api
-        val disposable = ApiFactory.apiService.getTopMoviesFromJSON()
-            .map { it.movies }
-            .map { it[1] }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe({
-                movieList.add(it)
-            }, {
-                it.message?.let { it1 -> Log.d("TEST API", it1) }
-            })
-        compositeDisposable.add(disposable)
-//      Log.d("TEST API", movieList?.size.toString())
-        setupRecyclerView()
+
+        val navView: BottomNavigationView = binding.navView
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConf= AppBarConfiguration(setOf(
+            R.id.moviesListFragment,
+            R.id.favouriteFragment
+        ))
+        setupActionBarWithNavController(navController, appBarConf)
+        navView.setupWithNavController(navController)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
-    }
-
-    private fun setupRecyclerView() {
-        with(binding.rvMoviesList) {
-            moviesListAdapter = MoviesListAdapter()
-            moviesListAdapter.submitList(movieList)
-            adapter = moviesListAdapter
-        }
-    }
+//    private fun setupRecyclerView() {
+//        with(binding.rvMoviesList) {
+//            moviesListAdapter = MoviesListAdapter()
+//            moviesListAdapter.submitList(networkMovieList)
+//            adapter = moviesListAdapter
+//        }
+//    }
 }

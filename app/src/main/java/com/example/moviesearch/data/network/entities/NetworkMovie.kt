@@ -1,11 +1,10 @@
-package com.example.moviesearch.domain.entity
+package com.example.moviesearch.data.network.entities
 
-import com.example.moviesearch.data.network.ApiService
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class NetworkMovie(
     @SerializedName("adult")
     @Expose
     val adult: Boolean?,

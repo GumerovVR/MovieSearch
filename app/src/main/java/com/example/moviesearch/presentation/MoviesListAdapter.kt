@@ -2,11 +2,11 @@ package com.example.moviesearch.presentation
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.example.moviesearch.domain.entity.Movie
+import com.example.moviesearch.data.network.entities.NetworkMovie
 
-class MoviesListAdapter : ListAdapter<Movie, MovieViewHolder>(MovieDiffCallback()) {
+class MoviesListAdapter : ListAdapter<NetworkMovie, MovieViewHolder>(MovieDiffCallback()) {
 
-    var onMovieItemClickListener: ((Movie) -> Unit)? = null
+    var onMovieItemClickListener: ((NetworkMovie) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val viewHolder = MovieViewHolder.create(parent)
