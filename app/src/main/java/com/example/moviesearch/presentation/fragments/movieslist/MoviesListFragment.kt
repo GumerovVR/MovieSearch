@@ -16,17 +16,17 @@ class MoviesListFragment : Fragment() {
 
     private lateinit var viewModel: MoviesListViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
         return inflater.inflate(R.layout.movies_list_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
