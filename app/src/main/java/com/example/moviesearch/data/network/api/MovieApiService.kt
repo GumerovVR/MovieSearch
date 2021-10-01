@@ -1,10 +1,14 @@
 package com.example.moviesearch.data.network.api
 
 import com.example.moviesearch.data.network.entities.NetworkMoviesResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieApiService {
+
+    // [API Documentation](https://developers.themoviedb.org/3/)
+
     @GET("discover/movie")
     suspend fun getMoviesFromNetwork(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,
@@ -12,7 +16,7 @@ interface MovieApiService {
         @Query(QUERY_PARAM_SORT_BY)  sortBy: String,
         @Query(QUERY_PARAM_MIN_VOTE_COUNT)  minVoteCount: String = MIN_VOTE_COUNT_VALUE,
         @Query(QUERY_PARAM_PAGE)  page: Int
-    ): NetworkMoviesResponse
+    ): Response<NetworkMoviesResponse>
 
 
     companion object {

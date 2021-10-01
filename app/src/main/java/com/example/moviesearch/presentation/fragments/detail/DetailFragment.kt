@@ -1,4 +1,4 @@
-package com.example.moviesearch
+package com.example.moviesearch.presentation.fragments.detail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.moviesearch.R
+import com.example.moviesearch.presentation.MoviesActivity
+import com.example.moviesearch.presentation.MoviesViewModel
 
 class DetailFragment : Fragment() {
 
@@ -13,7 +16,7 @@ class DetailFragment : Fragment() {
         fun newInstance() = DetailFragment()
     }
 
-    private lateinit var viewModel: DetailViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,10 +25,8 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.detail_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MoviesActivity).viewModel
     }
-
 }

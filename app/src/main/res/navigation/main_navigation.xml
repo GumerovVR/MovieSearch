@@ -22,7 +22,7 @@
         tools:layout="@layout/favourite_fragment" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.moviesearch.DetailFragment"
+        android:name="com.example.moviesearch.presentation.fragments.detail.DetailFragment"
         android:label="detail_fragment"
         tools:layout="@layout/detail_fragment" />
 </navigation>

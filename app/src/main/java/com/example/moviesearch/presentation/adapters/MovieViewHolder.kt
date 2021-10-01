@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation
+package com.example.moviesearch.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ class MovieViewHolder(private val binding: MovieItemBinding) :
     }
 
     companion object{
-        fun create(parent: ViewGroup): MovieViewHolder{
+        fun create(parent: ViewGroup): MovieViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = MovieItemBinding.inflate(inflater, parent, false)
             return MovieViewHolder(binding)

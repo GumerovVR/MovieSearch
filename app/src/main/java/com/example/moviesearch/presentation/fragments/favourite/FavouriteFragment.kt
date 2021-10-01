@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.moviesearch.R
+import com.example.moviesearch.presentation.MoviesActivity
+import com.example.moviesearch.presentation.MoviesViewModel
 
 class FavouriteFragment : Fragment() {
 
@@ -14,7 +16,7 @@ class FavouriteFragment : Fragment() {
         fun newInstance() = FavouriteFragment()
     }
 
-    private lateinit var viewModel: FavouriteViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +25,8 @@ class FavouriteFragment : Fragment() {
         return inflater.inflate(R.layout.favourite_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MoviesActivity).viewModel
     }
-
 }
