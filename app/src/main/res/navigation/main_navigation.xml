@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/moviesListFragment">
+
+    <fragment
+        android:id="@+id/moviesListFragment"
+        android:name="com.example.moviesearch.presentation.fragments.movieslist.MoviesListFragment"
+        android:label="@string/pop_movies"
+        tools:layout="@layout/movies_list_fragment" >
+        <action
+            android:id="@+id/action_moviesListFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.moviesearch.presentation.fragments.favourite.FavouriteFragment"
+        android:label="@string/favourite"
+        tools:layout="@layout/favourite_fragment" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.moviesearch.presentation.fragments.detail.DetailFragment"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" />
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.example.moviesearch.presentation.fragments.search.SearchMovieFragment"
+        android:label="search_movie_fragment"
+        tools:layout="@layout/search_movie_fragment" >
+        <action
+            android:id="@+id/action_searchMovieFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+</navigation>
