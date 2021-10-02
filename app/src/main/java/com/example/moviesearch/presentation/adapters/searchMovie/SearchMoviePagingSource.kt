@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation.adapters
+package com.example.moviesearch.presentation.adapters.searchMovie
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -7,9 +7,9 @@ import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.entities.asMovie
 import retrofit2.HttpException
 
-class MoviePagingSource(
+class SearchMoviePagingSource(
     private val apiService: MovieApiService,
-    private val sortBy: String
+    private val query: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -22,23 +22,21 @@ class MoviePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: START_PAGE
 
-        val response = apiService.getMoviesFromNetwork(
-            sortBy = sortBy, page = page
+        val response = apiService.getSearchMoviesFromNetwork(
+            query = query, page = page
         )
 
-        return try {
-            if (response.isSuccessful) {
-                val movies = checkNotNull(response.body())
-                    .networkMovies.map { it.asMovie() }
-                val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
-                val prevKey = if (page == START_PAGE) null else page - 1
-                LoadResult.Page(movies, prevKey, nextKey)
-            } else {
-                LoadResult.Error(HttpException(response))
-            }
-        } catch (e: Exception) {
-            LoadResult.Error(e)
+
+        return if (response.isSuccessful) {
+            val movies = checkNotNull(response.body())
+                .networkMovies.map { it.asMovie() }
+            val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
+            val prevKey = if (page == START_PAGE) null else page - 1
+            LoadResult.Page(movies, prevKey, nextKey)
+        } else {
+            LoadResult.Error(HttpException(response))
         }
+
     }
 
     companion object {

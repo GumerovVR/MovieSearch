@@ -1,11 +1,10 @@
-package com.example.moviesearch.presentation.adapters
+package com.example.moviesearch.presentation.adapters.categoryMovies
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.ListAdapter
 import com.example.moviesearch.domain.entities.Movie
 
-class MoviesListAdapter(private val onClick: (Movie) -> Unit) :
+class MovieAdapter(private val onClick: (Movie) -> Unit) :
     PagingDataAdapter<Movie, MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

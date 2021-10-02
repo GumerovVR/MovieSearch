@@ -18,11 +18,20 @@ interface MovieApiService {
         @Query(QUERY_PARAM_PAGE)  page: Int
     ): Response<NetworkMoviesResponse>
 
+    @GET("search/movie")
+    suspend fun getSearchMoviesFromNetwork(
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,
+        @Query(QUERY_PARAM_LANGUAGE) lang: String = "en-US",
+        @Query(QUERY_PARAM_QUERY) query: String,
+        @Query(QUERY_PARAM_PAGE)  page: Int
+    ): Response<NetworkMoviesResponse>
+
 
     companion object {
         private const val QUERY_PARAM_API_KEY = "api_key"
         private const val QUERY_PARAM_LANGUAGE = "language"
         private const val QUERY_PARAM_SORT_BY = "sort_by"
+        private const val QUERY_PARAM_QUERY = "query"
         private const val QUERY_PARAM_PAGE = "page"
         private const val QUERY_PARAM_MIN_VOTE_COUNT = "vote_count.gte"
 

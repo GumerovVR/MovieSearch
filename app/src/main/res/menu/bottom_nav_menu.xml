@@ -7,6 +7,11 @@
         android:title="@string/movies" />
 
     <item
+        android:id="@+id/searchMovieFragment"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search" />
+
+    <item
         android:id="@+id/favouriteFragment"
         android:icon="@drawable/ic_baseline_favorite_24"
         android:title="@string/favourite" />
