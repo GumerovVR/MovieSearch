@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.fragments.MovieListFragment">
+    tools:context=".presentation.fragments.movieslist.MoviesListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMoviesList"
@@ -14,6 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="6"
         tools:listitem="@layout/movie_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
