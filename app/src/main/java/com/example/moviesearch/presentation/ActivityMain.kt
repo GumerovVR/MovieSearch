@@ -16,27 +16,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class ActivityMain : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var viewModel: MoviesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val api = ApiFactory.apiService
-//        val repo = Repository()
-//        val viewModelProviderFactory = MoviesViewModelProviderFactory(repo, api)
-//        viewModel = ViewModelProvider(this, viewModelProviderFactory)
-//            .get(MoviesViewModel::class.java)
-
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConf= AppBarConfiguration(setOf(
-            R.id.moviesListFragment,
-            R.id.favouriteFragment,
-            R.id.searchMovieFragment
-        ))
-        setupActionBarWithNavController(navController, appBarConf)
+//        val appBarConf= AppBarConfiguration(setOf(
+//            R.id.moviesListFragment,
+//            R.id.favouriteFragment,
+//            R.id.searchMovieFragment
+//        ))
+//        setupActionBarWithNavController(navController, appBarConf)
         navView.setupWithNavController(navController)
     }
 }

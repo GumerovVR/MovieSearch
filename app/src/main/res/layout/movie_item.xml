@@ -27,7 +27,8 @@
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:paddingHorizontal="8dp"
-            android:text="7.0"
+            android:background="@color/background_rating"
+            android:text="N/A"
             android:textColor="@color/white"/>
 
     </androidx.cardview.widget.CardView>
@@ -50,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:contentDescription="постер к фильму"
+            android:contentDescription="@string/poster_content_description"
             android:src="@drawable/default_no_poster_movie" />
 
     </androidx.cardview.widget.CardView>
@@ -59,12 +60,12 @@
         android:id="@+id/tvTitleName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Название тайтла"
+        android:text="@string/label_movie"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/cvSmallPoster"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/white"
+        android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
         android:textSize="12sp"/>
 

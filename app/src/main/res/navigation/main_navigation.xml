@@ -28,7 +28,11 @@
         android:id="@+id/detailFragment"
         android:name="com.example.moviesearch.presentation.fragments.detail.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.example.moviesearch.domain.entities.Movie" />
+    </fragment>
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.example.moviesearch.presentation.fragments.search.SearchMovieFragment"

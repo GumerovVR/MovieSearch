@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService.Companion.SORT_BY_POPULARITY
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
@@ -49,8 +50,11 @@ class MoviesListFragment : Fragment() {
 
     private fun setupAdapter() {
         movieAdapter = MovieAdapter {
+            val bundle = Bundle().apply {
+                putParcelable("movie", it)
+            }
             findNavController().navigate(
-                MoviesListFragmentDirections.actionMoviesListFragmentToDetailFragment()
+                R.id.action_moviesListFragment_to_detailFragment, bundle
             )
         }
     }
@@ -61,7 +65,6 @@ class MoviesListFragment : Fragment() {
 //            .get(MovieListViewModel::class.java)
 //        viewModel = (activity as ActivityMain).viewModel
         binding.rvMoviesList.apply {
-            layoutManager = GridLayoutManager(context, 3)
             adapter = movieAdapter
         }
         observeData()

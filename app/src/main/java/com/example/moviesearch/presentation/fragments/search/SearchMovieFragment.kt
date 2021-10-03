@@ -55,7 +55,7 @@ class SearchMovieFragment : Fragment() {
     private fun setupAdapter() {
         movieAdapter = MovieAdapter {
             findNavController().navigate(
-                SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment()
+                SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment(it)
             )
         }
     }
@@ -63,7 +63,6 @@ class SearchMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvSearchMovie.apply {
-            layoutManager = GridLayoutManager(context, 3)
             adapter = movieAdapter
         }
         startSearching()

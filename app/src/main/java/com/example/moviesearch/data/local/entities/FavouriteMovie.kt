@@ -1,11 +1,11 @@
-package com.example.moviesearch.domain.entities
+package com.example.moviesearch.data.local.entities
 
-import android.os.Parcel
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Parcelize
-data class Movie(
+@Entity(tableName = "favourite_movies")
+data class FavouriteMovie(
+    @PrimaryKey
     val id: Int,
     val originalTitle: String,
     val overview: String,
@@ -14,4 +14,4 @@ data class Movie(
     val releaseDate: String,
     val title: String,
     val voteAverage: Double
-) : Parcelable
+)

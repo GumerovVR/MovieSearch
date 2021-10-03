@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.domain.entities.asMovie
+import com.example.moviesearch.data.mapping.asMovie
 import retrofit2.HttpException
 
 class SearchMoviePagingSource(

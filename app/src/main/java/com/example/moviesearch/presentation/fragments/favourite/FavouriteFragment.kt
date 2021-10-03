@@ -7,15 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.moviesearch.R
 import com.example.moviesearch.presentation.ActivityMain
-import com.example.moviesearch.presentation.MoviesViewModel
 
 class FavouriteFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = FavouriteFragment()
-    }
-
-    private lateinit var viewModel: MoviesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +19,5 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as ActivityMain).viewModel
     }
 }
