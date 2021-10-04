@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesearch.R
 import com.example.moviesearch.databinding.MovieItemBinding
 import com.example.moviesearch.domain.entities.Movie
+import com.example.moviesearch.presentation.utils.checkVoteAverage
+import com.example.moviesearch.presentation.utils.setNetworkImage
 import com.squareup.picasso.Picasso
 
 class MovieViewHolder(private val binding: MovieItemBinding) :
@@ -16,8 +18,8 @@ class MovieViewHolder(private val binding: MovieItemBinding) :
     fun bind(movie: Movie) {
         with(binding) {
             tvTitleName.text = movie.title
-            Picasso.get().load(movie.posterSmallSize).into(ivSmallPoster)
-            tvMovieRatingScore.text = movie.voteAverage.toString()
+            tvMovieRatingScore.text = movie.voteAverage.checkVoteAverage()
+            ivSmallPoster.setNetworkImage(movie.posterSmallSize)
         }
     }
 
