@@ -1,4 +1,4 @@
-package com.example.moviesearch.data.mapping
+package com.example.moviesearch.data.utils.mapping
 
 import com.example.moviesearch.data.local.entities.MovieDB
 import com.example.moviesearch.data.network.api.MovieApiService

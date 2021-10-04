@@ -1,15 +1,15 @@
-package com.example.moviesearch.presentation.adapters.searchMovie
+package com.example.moviesearch.presentation.adapters.movieslist
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.data.mapping.asMovie
+import com.example.moviesearch.data.utils.mapping.asMovie
 import retrofit2.HttpException
 
-class SearchMoviePagingSource(
+class MoviePagingSource(
     private val apiService: MovieApiService,
-    private val query: String
+    private val sortBy: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -22,8 +22,8 @@ class SearchMoviePagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: START_PAGE
 
-        val response = apiService.getSearchMoviesFromNetwork(
-            query = query, page = page
+        val response = apiService.getMoviesFromNetwork(
+            sortBy = sortBy, page = page
         )
 
 

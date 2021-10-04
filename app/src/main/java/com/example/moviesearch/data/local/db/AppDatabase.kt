@@ -1,4 +1,4 @@
-package com.example.moviesearch.data.local
+package com.example.moviesearch.data.local.db
 
 import android.content.Context
 import androidx.room.Database

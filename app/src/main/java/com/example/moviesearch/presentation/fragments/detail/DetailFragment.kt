@@ -1,6 +1,5 @@
 package com.example.moviesearch.presentation.fragments.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.example.moviesearch.R
-import com.example.moviesearch.data.local.AppDatabase
-import com.example.moviesearch.data.local.FavouriteMovieDao
-import com.example.moviesearch.data.network.api.ApiFactory
+import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.databinding.DetailFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.repository.Repository
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModelFactory
 import com.example.moviesearch.presentation.utils.checkVoteAverage
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
 class DetailFragment : Fragment() {
@@ -51,7 +44,7 @@ class DetailFragment : Fragment() {
         setupUI()
         movie?.let { movieToDB(it) }
         fabListener()
-        snackbarListener()
+        toastListener()
         return binding.root
     }
 
@@ -76,12 +69,13 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun snackbarListener(){
+    private fun toastListener(){
         viewModel.isFavourite.observe(viewLifecycleOwner, {
             if (it == true){
-                view?.let { it1 -> Snackbar.make(it1, "Добавлено в избранное", Snackbar.LENGTH_SHORT).show() }
+                Toast.makeText(requireContext(), "Добавлено в избранное", Toast.LENGTH_SHORT).show()
+                TODO("Реализовать отображение статуса избранного в UI")
             } else{
-                view?.let { it1 -> Snackbar.make(it1, "Удаленно из избранного", Snackbar.LENGTH_SHORT).show() }
+                Toast.makeText(requireContext(), "Удалено из избранного", Toast.LENGTH_SHORT).show()
             }
         })
     }

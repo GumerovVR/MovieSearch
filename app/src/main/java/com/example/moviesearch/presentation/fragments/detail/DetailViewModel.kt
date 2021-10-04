@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviesearch.data.local.FavouriteMovieDao
 import com.example.moviesearch.data.local.entities.MovieDB
-import com.example.moviesearch.data.mapping.asMovieDB
+import com.example.moviesearch.data.utils.mapping.asMovieDB
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.repository.Repository
 import kotlinx.coroutines.launch

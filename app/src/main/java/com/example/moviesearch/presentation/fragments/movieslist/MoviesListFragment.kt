@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService.Companion.SORT_BY_POPULARITY
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
-import com.example.moviesearch.presentation.adapters.categoryMovies.MovieAdapter
+import com.example.moviesearch.presentation.adapters.movieslist.MovieAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -30,10 +29,6 @@ class MoviesListFragment : Fragment() {
     }
     private lateinit var movieAdapter: MovieAdapter
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
-//
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,9 +56,6 @@ class MoviesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = ViewModelProvider(this, MovieListViewModelFactory(ApiFactory.apiService)).get(MovieListViewModel::class.java)
-//            .get(MovieListViewModel::class.java)
-//        viewModel = (activity as ActivityMain).viewModel
         binding.rvMoviesList.apply {
             adapter = movieAdapter
         }
@@ -80,15 +72,7 @@ class MoviesListFragment : Fragment() {
         }
     }
 
-//    private fun initRecyclerView() {
-//        binding.rvNews.apply {
-//            adapter = newsAdapter.withLoadStateHeaderAndFooter(
-//                header = NewsLoadStateAdapter { newsAdapter.retry() },
-//                footer = NewsLoadStateAdapter { newsAdapter.retry() }
-//            )
-//        }
-//        newsAdapter.loadStateListener(binding, requireContext())
-//    }
+
 
 
 }
