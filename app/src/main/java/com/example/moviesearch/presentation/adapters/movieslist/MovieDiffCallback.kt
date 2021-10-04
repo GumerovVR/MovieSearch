@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation.adapters.categoryMovies
+package com.example.moviesearch.presentation.adapters.movieslist
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.moviesearch.domain.entities.Movie

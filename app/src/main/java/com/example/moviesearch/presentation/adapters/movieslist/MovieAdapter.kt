@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation.adapters.categoryMovies
+package com.example.moviesearch.presentation.adapters.movieslist
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

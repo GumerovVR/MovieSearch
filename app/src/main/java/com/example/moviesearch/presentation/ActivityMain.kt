@@ -2,15 +2,10 @@ package com.example.moviesearch.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.moviesearch.R
-import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.databinding.ActivityMainBinding
-import com.example.moviesearch.domain.repository.Repository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ActivityMain : AppCompatActivity() {

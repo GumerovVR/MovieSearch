@@ -10,16 +10,9 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
-import com.example.moviesearch.data.network.api.MovieApiService
-import com.example.moviesearch.databinding.MoviesListFragmentBinding
 import com.example.moviesearch.databinding.SearchMovieFragmentBinding
-import com.example.moviesearch.presentation.adapters.categoryMovies.MovieAdapter
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModelFactory
-import com.example.moviesearch.presentation.fragments.movieslist.MoviesListFragmentDirections
+import com.example.moviesearch.presentation.adapters.movieslist.MovieAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
