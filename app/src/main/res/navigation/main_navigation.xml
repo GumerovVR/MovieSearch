@@ -3,17 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/moviesListFragment">
+    app:startDestination="@+id/homeFragment">
 
     <fragment
         android:id="@+id/moviesListFragment"
         android:name="com.example.moviesearch.presentation.fragments.movieslist.MoviesListFragment"
-        android:label="@string/pop_movies"
         tools:layout="@layout/movies_list_fragment" >
         <action
             android:id="@+id/action_moviesListFragment_to_detailFragment"
             app:destination="@id/detailFragment"
             />
+        <argument
+            android:name="compilationInfo"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -28,7 +30,11 @@
         android:id="@+id/detailFragment"
         android:name="com.example.moviesearch.presentation.fragments.detail.DetailFragment"
         android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" />
+        tools:layout="@layout/detail_fragment" >
+        <argument
+            android:name="movie"
+            app:argType="com.example.moviesearch.domain.entities.Movie" />
+    </fragment>
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.example.moviesearch.presentation.fragments.search.SearchMovieFragment"
@@ -36,6 +42,18 @@
         tools:layout="@layout/search_movie_fragment" >
         <action
             android:id="@+id/action_searchMovieFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.moviesearch.presentation.fragments.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_moviesListFragment"
+            app:destination="@id/moviesListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
 </navigation>

@@ -7,4 +7,6 @@
     <string name="movies">Фильмы</string>
     <string name="search">Поиск</string>
     <string name="search_movie">Поиск фильма</string>
+    <string name="poster_content_description">Постер к фильму</string>
+    <string name="label_movie">Название фильма</string>
 </resources>

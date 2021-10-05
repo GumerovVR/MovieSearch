@@ -1,9 +1,11 @@
-package com.example.moviesearch.domain.entities
+package com.example.moviesearch.data.utils.mapping
 
+import com.example.moviesearch.data.local.entities.MovieDB
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.data.network.entities.NetworkMovie
+import com.example.moviesearch.domain.entities.Movie
 
-internal fun NetworkMovie.asMovie(): Movie {
+fun NetworkMovie.asMovie(): Movie {
     return Movie(
         id = this.id ?: MovieApiService.UNKNOWN_ID,
         title = this.title ?: "",
@@ -15,9 +17,20 @@ internal fun NetworkMovie.asMovie(): Movie {
             ?: "",
         originalTitle = this.originalTitle ?: "",
         overview = this.overview ?: "",
-        popularity = this.popularity ?: 0.0,
         releaseDate = this.posterPath ?: "",
-        voteAverage = this.voteAverage ?: 0.0,
-        voteCount = this.voteCount ?: 0
+        voteAverage = this.voteAverage ?: 0.0
+    )
+}
+
+fun Movie.asMovieDB(): MovieDB {
+    return MovieDB(
+        id, originalTitle, overview, posterSmallSize, posterFullSize,
+        releaseDate, title, voteAverage, isFavourite = false
+    )
+}
+fun MovieDB.asMovie(): Movie{
+    return Movie(
+        id, originalTitle, overview, posterSmallSize, posterFullSize,
+        releaseDate, title, voteAverage
     )
 }

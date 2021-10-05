@@ -10,16 +10,9 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
-import com.example.moviesearch.data.network.api.MovieApiService
-import com.example.moviesearch.databinding.MoviesListFragmentBinding
 import com.example.moviesearch.databinding.SearchMovieFragmentBinding
-import com.example.moviesearch.presentation.adapters.categoryMovies.MovieAdapter
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModelFactory
-import com.example.moviesearch.presentation.fragments.movieslist.MoviesListFragmentDirections
+import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -36,7 +29,7 @@ class SearchMovieFragment : Fragment() {
             .get(SearchMovieViewModel::class.java)
     }
 
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var movieListAdapter: MovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,9 +46,9 @@ class SearchMovieFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        movieAdapter = MovieAdapter {
+        movieListAdapter = MovieListAdapter {
             findNavController().navigate(
-                SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment()
+                SearchMovieFragmentDirections.actionSearchMovieFragmentToDetailFragment(it)
             )
         }
     }
@@ -63,8 +56,7 @@ class SearchMovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rvSearchMovie.apply {
-            layoutManager = GridLayoutManager(context, 3)
-            adapter = movieAdapter
+            adapter = movieListAdapter
         }
         startSearching()
     }
@@ -93,7 +85,7 @@ class SearchMovieFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.getMovies(query = query).collect {
                 val res = it
-                movieAdapter.submitData(res)
+                movieListAdapter.submitData(res)
             }
         }
     }
