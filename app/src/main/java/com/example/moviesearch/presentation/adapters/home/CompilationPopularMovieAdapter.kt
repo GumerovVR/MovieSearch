@@ -3,7 +3,6 @@ package com.example.moviesearch.presentation.adapters.home
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.presentation.adapters.movieslist.MovieDiffCallback
 
 
 class CompilationPopularMovieAdapter(private val onClick: (Movie) -> Unit) :

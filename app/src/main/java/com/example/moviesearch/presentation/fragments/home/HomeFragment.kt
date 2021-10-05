@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.databinding.HomeFragmentBinding
@@ -65,9 +66,7 @@ class HomeFragment : Fragment() {
                     progressPopular.isVisible = state.refresh == LoadState.Loading
                 }
                 if (refreshState is LoadState.Error) {
-//                    Toast.makeText(requireContext(), "Ошибка загрузки данных с сервера\n" +
-//                            "Проверьте подключение к сети", Toast.LENGTH_LONG).show()
-                    Snackbar.make(binding.root, refreshState.error.localizedMessage ?: "nea", Snackbar.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), R.string.errorLoad, Toast.LENGTH_LONG).show()
                 }
             }
             withLoadStateHeaderAndFooter(

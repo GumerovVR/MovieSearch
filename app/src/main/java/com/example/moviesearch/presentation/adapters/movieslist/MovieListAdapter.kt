@@ -3,6 +3,7 @@ package com.example.moviesearch.presentation.adapters.movieslist
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.example.moviesearch.domain.entities.Movie
+import com.example.moviesearch.presentation.adapters.home.MovieDiffCallback
 
 class MovieListAdapter(private val onClick: (Movie) -> Unit) :
     PagingDataAdapter<Movie, VerticalMovieViewHolder>(MovieDiffCallback()) {
