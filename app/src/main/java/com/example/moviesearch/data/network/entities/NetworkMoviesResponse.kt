@@ -8,6 +8,6 @@ data class NetworkMoviesResponse (
 
     @SerializedName("results")
     @Expose
-    val networkMovies: List<NetworkMovie> = emptyList()
+    val networkMovies: List<NetworkMovie>
 
 )

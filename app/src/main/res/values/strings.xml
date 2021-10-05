@@ -9,4 +9,7 @@
     <string name="search_movie">Поиск фильма</string>
     <string name="poster_content_description">Постер к фильму</string>
     <string name="label_movie">Название фильма</string>
+    <string name="error_result">Результаты не могут быть загружены</string>
+    <string name="retry">повторить</string>
+    <string name="errorLoad">Ошибка загрузки данных с сервера\nПроверьте подключение к сети</string>
 </resources>
