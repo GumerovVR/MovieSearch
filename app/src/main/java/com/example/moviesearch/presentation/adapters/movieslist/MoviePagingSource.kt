@@ -21,22 +21,19 @@ class MoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val page = params.key ?: START_PAGE
-
+        return try {
         val response = apiService.getMoviesFromNetwork(
             sortBy = sortBy, page = page
         )
+                val movies = checkNotNull(response.body())
+                    .networkMovies.map { it.asMovie() }
+                val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
+                val prevKey = if (page == START_PAGE) null else page - 1
+                LoadResult.Page(movies, prevKey, nextKey)
 
-
-        return if (response.isSuccessful) {
-            val movies = checkNotNull(response.body())
-                .networkMovies.map { it.asMovie() }
-            val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
-            val prevKey = if (page == START_PAGE) null else page - 1
-            LoadResult.Page(movies, prevKey, nextKey)
-        } else {
-            LoadResult.Error(HttpException(response))
+        } catch (e: Exception) {
+            LoadResult.Error(e)
         }
-
     }
 
     companion object {
