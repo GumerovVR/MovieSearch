@@ -43,6 +43,7 @@ interface MovieApiService {
         const val LANG_ENG = "en-US"
         const val SORT_BY_POPULARITY = "popularity.desc"
         const val SORT_BY_TOP_RATED = "vote_average.desc"
+        const val SORT_BY_REVENUE = "revenue.desc"
         const val UNKNOWN_ID = -1
 
         const val BASE_URL_POSTER = "https://image.tmdb.org/t/p/"

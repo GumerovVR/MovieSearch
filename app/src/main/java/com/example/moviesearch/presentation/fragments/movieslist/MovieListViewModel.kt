@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.presentation.adapters.movieslist.MoviePagingSource
+import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
 import kotlinx.coroutines.flow.Flow
 
 class MovieListViewModel(private val apiService: MovieApiService) : ViewModel() {

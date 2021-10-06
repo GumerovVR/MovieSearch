@@ -20,23 +20,28 @@ class SearchMoviePagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        val page = params.key ?: START_PAGE
-
-        val response = apiService.getSearchMoviesFromNetwork(
-            query = query, page = page
-        )
-
-
-        return if (response.isSuccessful) {
-            val movies = checkNotNull(response.body())
-                .networkMovies.map { it.asMovie() }
-            val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
-            val prevKey = if (page == START_PAGE) null else page - 1
-            LoadResult.Page(movies, prevKey, nextKey)
-        } else {
-            LoadResult.Error(HttpException(response))
+        if (query.isBlank()) {
+            return LoadResult.Page(emptyList(), prevKey = null, nextKey = null)
         }
-
+        try {
+            val page = params.key ?: START_PAGE
+            val response = apiService.getSearchMoviesFromNetwork(
+                query = query, page = page
+            )
+            return if (response.isSuccessful) {
+                val movies = checkNotNull(response.body())
+                    .networkMovies.map { it.asMovie() }
+                val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
+                val prevKey = if (page == START_PAGE) null else page - 1
+                LoadResult.Page(movies, prevKey, nextKey)
+            } else {
+                LoadResult.Error(HttpException(response))
+            }
+        } catch (e: HttpException) {
+            return LoadResult.Error(e)
+        } catch (e: Exception) {
+            return LoadResult.Error(e)
+        }
     }
 
     companion object {

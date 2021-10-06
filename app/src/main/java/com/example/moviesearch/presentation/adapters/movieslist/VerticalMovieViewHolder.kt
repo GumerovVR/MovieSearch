@@ -1,6 +1,5 @@
 package com.example.moviesearch.presentation.adapters.movieslist
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +8,7 @@ import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.presentation.utils.checkVoteAverage
 import com.example.moviesearch.presentation.utils.setNetworkImage
 
-class MovieViewHolder(private val binding: MovieItemBinding) :
+class VerticalMovieViewHolder(private val binding: MovieItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
 
@@ -22,10 +21,10 @@ class MovieViewHolder(private val binding: MovieItemBinding) :
     }
 
     companion object{
-        fun create(parent: ViewGroup): MovieViewHolder {
+        fun create(parent: ViewGroup): VerticalMovieViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = MovieItemBinding.inflate(inflater, parent, false)
-            return MovieViewHolder(binding)
+            return VerticalMovieViewHolder(binding)
         }
     }
 }

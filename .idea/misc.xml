@@ -17,8 +17,13 @@
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/favourite_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/fragment_movie_list.xml" value="0.5" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/home_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/item_error.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/item_progress.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/load_state_footer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movie_info.xml" value="0.46184738955823296" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movie_item.xml" value="0.33" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movie_item_horizontal.xml" value="0.33" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movie_item_vertikal.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movies_list_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/search_movie_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />

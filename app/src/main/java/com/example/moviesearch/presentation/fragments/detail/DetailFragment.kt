@@ -73,7 +73,7 @@ class DetailFragment : Fragment() {
         viewModel.isFavourite.observe(viewLifecycleOwner, {
             if (it == true){
                 Toast.makeText(requireContext(), "Добавлено в избранное", Toast.LENGTH_SHORT).show()
-                TODO("Реализовать отображение статуса избранного в UI")
+                //Реализовать отображение статуса избранного в UI
             } else{
                 Toast.makeText(requireContext(), "Удалено из избранного", Toast.LENGTH_SHORT).show()
             }
