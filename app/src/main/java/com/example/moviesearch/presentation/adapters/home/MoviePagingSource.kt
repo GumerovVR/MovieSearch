@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation.adapters.movieslist
+package com.example.moviesearch.presentation.adapters.home
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -20,19 +20,25 @@ class MoviePagingSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        val page = params.key ?: START_PAGE
         return try {
-        val response = apiService.getMoviesFromNetwork(
-            sortBy = sortBy, page = page
-        )
+            val page = params.key ?: START_PAGE
+            val response = apiService.getMoviesFromNetwork(
+                sortBy = sortBy, page = page
+            )
+
+            if (response.isSuccessful) {
                 val movies = checkNotNull(response.body())
                     .networkMovies.map { it.asMovie() }
                 val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
                 val prevKey = if (page == START_PAGE) null else page - 1
                 LoadResult.Page(movies, prevKey, nextKey)
-
+            } else {
+                return LoadResult.Error(HttpException(response))
+            }
+        } catch (e: HttpException) {
+            return LoadResult.Error(e)
         } catch (e: Exception) {
-            LoadResult.Error(e)
+            return LoadResult.Error(e)
         }
     }
 

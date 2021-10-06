@@ -14,17 +14,13 @@ class ActivityMain : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_MovieSearch)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
-//        val appBarConf= AppBarConfiguration(setOf(
-//            R.id.moviesListFragment,
-//            R.id.favouriteFragment,
-//            R.id.searchMovieFragment
-//        ))
-//        setupActionBarWithNavController(navController, appBarConf)
+
         navView.setupWithNavController(navController)
     }
 }

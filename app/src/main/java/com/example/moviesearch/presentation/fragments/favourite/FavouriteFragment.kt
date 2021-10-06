@@ -1,10 +1,10 @@
 package com.example.moviesearch.presentation.fragments.favourite
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -52,16 +52,16 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearNotFavouriteMovies()
         binding.rvFavouriteList.apply {
             adapter = favouriteAdapter
         }
-        viewModel.clearNotFavouriteMovies()
         observeData()
     }
 
     private fun observeData() {
         viewModel.getFavouriteMovies()
-            .observe(viewLifecycleOwner, Observer {
+            .observe(viewLifecycleOwner, {
                 favouriteAdapter.submitList(it)
             })
     }

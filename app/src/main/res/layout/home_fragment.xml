@@ -43,7 +43,7 @@
                     android:layout_marginStart="8dp"
                     android:gravity="start|top"
                     android:padding="8dp"
-                    android:text="Популярные"
+                    android:text="@string/popular_label"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +51,7 @@
                 <ImageView
                     android:id="@+id/ivAllPopular"
                     android:layout_width="50dp"
+                    android:contentDescription="@string/popular_cd"
                     android:layout_height="50dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_baseline_arrow_forward_24"
@@ -103,7 +104,7 @@
                     android:layout_marginStart="8dp"
                     android:gravity="start|top"
                     android:padding="8dp"
-                    android:text="Топ рейтинга"
+                    android:text="@string/top_rating_label"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -114,6 +115,7 @@
                     android:layout_height="50dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_baseline_arrow_forward_24"
+                    android:contentDescription="@string/top_rating_cd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,7 +165,7 @@
                     android:layout_marginStart="8dp"
                     android:gravity="start|top"
                     android:padding="8dp"
-                    android:text="Самые кассовые"
+                    android:text="@string/revenue_label"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -173,6 +175,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:padding="8dp"
+                    android:contentDescription="@string/revenue_cd"
                     android:src="@drawable/ic_baseline_arrow_forward_24"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

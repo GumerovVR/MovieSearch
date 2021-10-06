@@ -1,13 +1,12 @@
 package com.example.moviesearch.presentation.fragments.search
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.moviesearch.data.network.api.ApiFactory
@@ -65,7 +64,6 @@ class SearchMovieFragment : Fragment() {
         binding.etSearchMovie.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 searching()
-                Toast.makeText(context, "click", Toast.LENGTH_SHORT).show()
                 true
             } else {
                 false

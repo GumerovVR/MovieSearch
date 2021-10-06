@@ -18,6 +18,7 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/add_to_favourite"
         app:maxImageSize="30dp"
         app:tint="#FFFF" />
 
@@ -31,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/ivFullPoster"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/poster_content_description"
                 android:src="@drawable/ic_baseline_image_24"

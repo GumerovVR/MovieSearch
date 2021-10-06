@@ -11,6 +11,7 @@
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/ic_baseline_image_not_supported_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/drawable/splash_image.xml" value="0.3828125" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout-land/movies_list_fragment.xml" value="0.22" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/detail_fragment.xml" value="0.33" />
@@ -27,6 +28,8 @@
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/movies_list_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/layout/search_movie_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Vladislav/AndroidStudioProjects/MovieSearch/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3828125" />
       </map>
     </option>
   </component>

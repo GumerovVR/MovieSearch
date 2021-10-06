@@ -14,14 +14,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
-import com.example.moviesearch.data.network.api.MovieApiService.Companion.SORT_BY_POPULARITY
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
-import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.presentation.adapters.home.Movies2LoaderStateAdapter
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
-import com.example.moviesearch.presentation.fragments.detail.DetailFragmentArgs
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -87,7 +82,7 @@ class MoviesListFragment : Fragment() {
                         progress.isVisible = state.refresh == LoadState.Loading
                     }
                     if (refreshState is LoadState.Error) {
-                        Toast.makeText(requireContext(), R.string.errorLoad, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), R.string.error_load, Toast.LENGTH_LONG).show()
                     }
                 }
             }

@@ -1,24 +1,27 @@
 package com.example.moviesearch.presentation.fragments.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.moviesearch.R
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.databinding.HomeFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.presentation.adapters.home.*
+import com.example.moviesearch.presentation.adapters.home.CompilationPopularMovieAdapter
+import com.example.moviesearch.presentation.adapters.home.CompilationRevenueMovieAdapter
+import com.example.moviesearch.presentation.adapters.home.CompilationTopRatingMovieAdapter
+import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
 import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModelFactory
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -65,9 +68,7 @@ class HomeFragment : Fragment() {
                     progressPopular.isVisible = state.refresh == LoadState.Loading
                 }
                 if (refreshState is LoadState.Error) {
-//                    Toast.makeText(requireContext(), "Ошибка загрузки данных с сервера\n" +
-//                            "Проверьте подключение к сети", Toast.LENGTH_LONG).show()
-                    Snackbar.make(binding.root, refreshState.error.localizedMessage ?: "nea", Snackbar.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), R.string.error_load, Toast.LENGTH_LONG).show()
                 }
             }
             withLoadStateHeaderAndFooter(

@@ -21,7 +21,7 @@ class DetailViewModel(private val repo: Repository) : ViewModel() {
         get() = _isFavourite
 
 
-    fun insertMovieInDB(movie: Movie){
+    fun insertMovieInDB(movie: Movie) {
         viewModelScope.launch {
             repo.insert(movie.asMovieDB())
         }
@@ -51,11 +51,4 @@ class DetailViewModel(private val repo: Repository) : ViewModel() {
         _isFavourite.value = _movieDB.value?.isFavourite
     }
 
-    private fun clearTempMovie(){
-        if(_isFavourite.value == false) {
-            viewModelScope.launch {
-                movieDB.value?.let { repo.deleteMovieByID(it.id) }
-            }
-        }
-    }
 }
