@@ -82,7 +82,7 @@ class MoviesListFragment : Fragment() {
                         progress.isVisible = state.refresh == LoadState.Loading
                     }
                     if (refreshState is LoadState.Error) {
-                        Toast.makeText(requireContext(), R.string.errorLoad, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), R.string.error_load, Toast.LENGTH_LONG).show()
                     }
                 }
             }

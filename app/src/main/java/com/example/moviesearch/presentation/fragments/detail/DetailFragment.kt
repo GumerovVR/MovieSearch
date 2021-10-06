@@ -8,12 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.moviesearch.R
 import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.databinding.DetailFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.utils.checkVoteAverage
-import com.squareup.picasso.Picasso
+import com.example.moviesearch.presentation.utils.setNetworkImage
 
 class DetailFragment : Fragment() {
 
@@ -48,14 +49,14 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
-    private fun movieToDB(movie: Movie){
+    private fun movieToDB(movie: Movie) {
         viewModel.insertMovieInDB(movie)
         viewModel.getMovieFromDB(movie.id)
     }
 
     private fun setupUI() {
         with(binding) {
-            Picasso.get().load(movie?.posterFullSize).into(ivFullPoster)
+            movie?.posterFullSize?.let { ivFullPoster.setNetworkImage(it) }
             movieInfo.tvTitleName.text = movie?.title
             movieInfo.tvOriginalName.text = movie?.originalTitle
             movieInfo.tvRatingDetail.text = movie?.voteAverage?.checkVoteAverage()
@@ -69,13 +70,13 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun toastListener(){
+    private fun toastListener() {
         viewModel.isFavourite.observe(viewLifecycleOwner, {
-            if (it == true){
-                Toast.makeText(requireContext(), "Добавлено в избранное", Toast.LENGTH_SHORT).show()
+            if (it == true) {
+                Toast.makeText(requireContext(), R.string.add_to_favourite, Toast.LENGTH_SHORT).show()
                 //Реализовать отображение статуса избранного в UI
-            } else{
-                Toast.makeText(requireContext(), "Удалено из избранного", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), R.string.delete_favourite, Toast.LENGTH_SHORT).show()
             }
         })
     }
