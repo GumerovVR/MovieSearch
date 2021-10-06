@@ -7,11 +7,17 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesearch.data.network.api.MovieApiService
+import com.example.moviesearch.databinding.MovieItemBinding
 import com.example.moviesearch.domain.entities.Movie
+import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
-class MovieListViewModel(private val apiService: MovieApiService) : ViewModel() {
+class MovieListViewModel(private val apiService: MovieApiService,
+                         private val repo: Repository
+) : ViewModel() {
 
     private var currentSortBy: String? = null
     private var currentResult: Flow<PagingData<Movie>>? = null
@@ -35,5 +41,11 @@ class MovieListViewModel(private val apiService: MovieApiService) : ViewModel() 
             enablePlaceholders = false
         ),
             pagingSourceFactory = { MoviePagingSource(apiService, sortBy) }).flow
+    }
+
+    fun clearNotFavouriteMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.deleteNotFavouriteMovie(false)
+        }
     }
 }
