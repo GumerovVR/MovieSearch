@@ -18,5 +18,5 @@
 ### ТЗ: https://docs.google.com/document/d/16fvQUtQsntM_V7qifAEpaKJbg6IMefJL/edit?usp=sharing&ouid=103592319134989979414&rtpof=true&sd=true
 
 # Примечание
-##### В данный момент введется работа над внедрением Dagger-Hilt и рефакторинг под CleanArchetecture (выполнено на 40-60%)
+##### В данный момент введется работа над внедрением Dagger-Hilt и рефакторинг под CleanArchetecture
 ##### В Jira указаны задачи и фиксы багов, которые будут реализованы в будущем
