@@ -27,9 +27,6 @@ interface FavouriteMovieDao {
     @Query("SELECT * FROM favourite_movies")
     fun getAllMoviesDB(): LiveData<List<MovieDB>>
 
-//    @Query("SELECT * FROM favourite_movies WHERE isFavourite = :isFavourite")
-//    fun getAllFavouriteMoviesDB(isFavourite: Boolean): LiveData<List<MovieDB>>
-
     @Delete
     suspend fun deleteMovieDB(movieDB: MovieDB)
 

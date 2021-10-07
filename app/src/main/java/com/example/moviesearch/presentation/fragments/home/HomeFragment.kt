@@ -12,10 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.moviesearch.R
+import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.databinding.HomeFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
+import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.CompilationPopularMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.CompilationRevenueMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.CompilationTopRatingMovieAdapter
@@ -33,7 +35,10 @@ class HomeFragment : Fragment() {
 
     private val viewModel: MovieListViewModel by lazy {
         val apiService = ApiFactory.apiService
-        ViewModelProvider(this, MovieListViewModelFactory(apiService))
+        val db = AppDatabase
+            .invoke(requireContext()).getFavouriteMovieDao()
+        val repo = Repository(db)
+        ViewModelProvider(this, MovieListViewModelFactory(apiService, repo))
             .get(MovieListViewModel::class.java)
     }
 
@@ -112,6 +117,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearNotFavouriteMovies()
         setupRecyclers()
         popularityCompilation()
         topRatingCompilation()

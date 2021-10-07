@@ -13,8 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import com.example.moviesearch.R
+import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
+import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
 import kotlinx.coroutines.flow.collect
@@ -28,7 +30,10 @@ class MoviesListFragment : Fragment() {
 
     private val viewModel: MovieListViewModel by lazy {
         val apiService = ApiFactory.apiService
-        ViewModelProvider(this, MovieListViewModelFactory(apiService))
+        val db = AppDatabase
+            .invoke(requireContext()).getFavouriteMovieDao()
+        val repo = Repository(db)
+        ViewModelProvider(this, MovieListViewModelFactory(apiService, repo))
             .get(MovieListViewModel::class.java)
     }
     private lateinit var movieListAdapter: MovieListAdapter
@@ -69,6 +74,7 @@ class MoviesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.clearNotFavouriteMovies()
         binding.rvMoviesList.apply {
             adapter = movieListAdapter.apply {
                 withLoadStateHeaderAndFooter(
