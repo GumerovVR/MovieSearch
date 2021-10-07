@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import com.example.moviesearch.R
 import com.example.moviesearch.data.local.db.AppDatabase
-import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
 import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
@@ -29,12 +28,7 @@ class MoviesListFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("MoviesListFragmentBinding == null")
 
     private val viewModel: MovieListViewModel by lazy {
-        val apiService = ApiFactory.apiService
-        val db = AppDatabase
-            .invoke(requireContext()).getFavouriteMovieDao()
-        val repo = Repository(db)
-        ViewModelProvider(this, MovieListViewModelFactory(apiService, repo))
-            .get(MovieListViewModel::class.java)
+        ViewModelProvider(this).get(MovieListViewModel::class.java)
     }
     private lateinit var movieListAdapter: MovieListAdapter
 
@@ -52,6 +46,7 @@ class MoviesListFragment : Fragment() {
     ): View {
         setupAdapter()
         _binding = MoviesListFragmentBinding.inflate(layoutInflater)
+        viewModel
         return binding.root
     }
 
@@ -74,7 +69,7 @@ class MoviesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.clearNotFavouriteMovies()
+//        viewModel.clearNotFavouriteMovies()
         binding.rvMoviesList.apply {
             adapter = movieListAdapter.apply {
                 withLoadStateHeaderAndFooter(

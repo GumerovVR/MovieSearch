@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.databinding.SearchMovieFragmentBinding
 import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
 import kotlinx.coroutines.flow.collect
@@ -23,9 +22,7 @@ class SearchMovieFragment : Fragment() {
 
 
     private val viewModel: SearchMovieViewModel by lazy {
-        val apiService = ApiFactory.apiService
-        ViewModelProvider(this, SearchMovieViewModelFactory(apiService))
-            .get(SearchMovieViewModel::class.java)
+        ViewModelProvider(this).get(SearchMovieViewModel::class.java)
     }
 
     private lateinit var movieListAdapter: MovieListAdapter

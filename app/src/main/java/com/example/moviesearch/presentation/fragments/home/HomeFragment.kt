@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.moviesearch.R
 import com.example.moviesearch.data.local.db.AppDatabase
-import com.example.moviesearch.data.network.api.ApiFactory
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.databinding.HomeFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
@@ -23,7 +22,6 @@ import com.example.moviesearch.presentation.adapters.home.CompilationRevenueMovi
 import com.example.moviesearch.presentation.adapters.home.CompilationTopRatingMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
-import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModelFactory
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -34,12 +32,7 @@ class HomeFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("HomeFragmentBinding == null")
 
     private val viewModel: MovieListViewModel by lazy {
-        val apiService = ApiFactory.apiService
-        val db = AppDatabase
-            .invoke(requireContext()).getFavouriteMovieDao()
-        val repo = Repository(db)
-        ViewModelProvider(this, MovieListViewModelFactory(apiService, repo))
-            .get(MovieListViewModel::class.java)
+        ViewModelProvider(this).get(MovieListViewModel::class.java)
     }
 
     private lateinit var compilationPopularMovieAdapter: CompilationPopularMovieAdapter
@@ -117,7 +110,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.clearNotFavouriteMovies()
+//        viewModel.clearNotFavouriteMovies()
         setupRecyclers()
         popularityCompilation()
         topRatingCompilation()

@@ -18,7 +18,6 @@ interface MovieApiService {
         @Query(QUERY_PARAM_MIN_VOTE_COUNT)  minVoteCount: String = MIN_VOTE_COUNT_VALUE,
         @Query(QUERY_PARAM_PAGE)  page: Int
     ): Response<NetworkMoviesResponse>
-
     @GET("search/movie")
     suspend fun getSearchMoviesFromNetwork(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = API_KEY,

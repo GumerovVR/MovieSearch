@@ -8,6 +8,7 @@ class Repository(
     private val db: FavouriteMovieDao
 ) {
 
+
     suspend fun insert(movieDB: MovieDB) = db.insert(movieDB)
 
     suspend fun upsert(movieDB: MovieDB) = db.upsert(movieDB)

@@ -6,17 +6,16 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.moviesearch.data.network.api.MovieApiService
-import com.example.moviesearch.databinding.MovieItemBinding
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.domain.repository.Repository
+import com.example.moviesearch.domain.use_cases.GetCategoryMoviesUseCase
 import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieListViewModel(private val apiService: MovieApiService,
-                         private val repo: Repository
+@HiltViewModel
+class MovieListViewModel @Inject constructor(
+    private val getCategoryMoviesUseCase: GetCategoryMoviesUseCase
 ) : ViewModel() {
 
     private var currentSortBy: String? = null
@@ -40,12 +39,7 @@ class MovieListViewModel(private val apiService: MovieApiService,
             pageSize = MoviePagingSource.DEFAULT_PAGE_SIZE,
             enablePlaceholders = false
         ),
-            pagingSourceFactory = { MoviePagingSource(apiService, sortBy) }).flow
+            pagingSourceFactory = { getCategoryMoviesUseCase(sortBy) }).flow
     }
 
-    fun clearNotFavouriteMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repo.deleteNotFavouriteMovie(false)
-        }
-    }
 }

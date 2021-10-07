@@ -5,11 +5,15 @@ import androidx.paging.PagingState
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.data.utils.mapping.asMovie
+import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import retrofit2.HttpException
 
-class SearchMoviePagingSource(
+class SearchMoviePagingSource @AssistedInject constructor(
     private val apiService: MovieApiService,
-    private val query: String
+    @Assisted("query") private val query: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -47,5 +51,10 @@ class SearchMoviePagingSource(
     companion object {
         const val DEFAULT_PAGE_SIZE = 20 // api does not support custom page size
         const val START_PAGE = 1
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(@Assisted("query") query: String): SearchMoviePagingSource
     }
 }

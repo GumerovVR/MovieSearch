@@ -5,11 +5,14 @@ import androidx.paging.PagingState
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.data.utils.mapping.asMovie
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import retrofit2.HttpException
 
-class MoviePagingSource(
+class MoviePagingSource @AssistedInject constructor(
     private val apiService: MovieApiService,
-    private val sortBy: String
+    @Assisted("sortBy") private val sortBy: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -25,7 +28,6 @@ class MoviePagingSource(
             val response = apiService.getMoviesFromNetwork(
                 sortBy = sortBy, page = page
             )
-
             if (response.isSuccessful) {
                 val movies = checkNotNull(response.body())
                     .networkMovies.map { it.asMovie() }
@@ -45,5 +47,10 @@ class MoviePagingSource(
     companion object {
         const val DEFAULT_PAGE_SIZE = 20 // api does not support custom page size
         const val START_PAGE = 1
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(@Assisted("sortBy") sortBy: String): MoviePagingSource
     }
 }
