@@ -1,19 +1,18 @@
-package com.example.moviesearch.presentation.adapters.search
+package com.example.moviesearch.data.network.adapters.paging_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.data.utils.mapping.asMovie
-import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import retrofit2.HttpException
 
-class SearchMoviePagingSource @AssistedInject constructor(
+class MoviePagingSource @AssistedInject constructor(
     private val apiService: MovieApiService,
-    @Assisted("query") private val query: String
+    @Assisted("sortBy") private val sortBy: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -24,22 +23,19 @@ class SearchMoviePagingSource @AssistedInject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        if (query.isBlank()) {
-            return LoadResult.Page(emptyList(), prevKey = null, nextKey = null)
-        }
-        try {
+        return try {
             val page = params.key ?: START_PAGE
-            val response = apiService.getSearchMoviesFromNetwork(
-                query = query, page = page
+            val response = apiService.getMoviesFromNetwork(
+                sortBy = sortBy, page = page
             )
-            return if (response.isSuccessful) {
+            if (response.isSuccessful) {
                 val movies = checkNotNull(response.body())
                     .networkMovies.map { it.asMovie() }
                 val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
                 val prevKey = if (page == START_PAGE) null else page - 1
                 LoadResult.Page(movies, prevKey, nextKey)
             } else {
-                LoadResult.Error(HttpException(response))
+                return LoadResult.Error(HttpException(response))
             }
         } catch (e: HttpException) {
             return LoadResult.Error(e)
@@ -55,6 +51,6 @@ class SearchMoviePagingSource @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(@Assisted("query") query: String): SearchMoviePagingSource
+        fun create(@Assisted("sortBy") sortBy: String): MoviePagingSource
     }
 }

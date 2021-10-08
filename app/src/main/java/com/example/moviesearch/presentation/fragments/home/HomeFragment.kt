@@ -7,33 +7,31 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.moviesearch.R
-import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.data.network.api.MovieApiService
 import com.example.moviesearch.databinding.HomeFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.CompilationPopularMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.CompilationRevenueMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.CompilationTopRatingMovieAdapter
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.fragments.movieslist.MovieListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: HomeFragmentBinding? = null
     private val binding: HomeFragmentBinding
         get() = _binding ?: throw RuntimeException("HomeFragmentBinding == null")
 
-    private val viewModel: MovieListViewModel by lazy {
-        ViewModelProvider(this).get(MovieListViewModel::class.java)
-    }
+    private val viewModel: MovieListViewModel by viewModels()
 
     private lateinit var compilationPopularMovieAdapter: CompilationPopularMovieAdapter
     private lateinit var compilationTopRatingMovieAdapter: CompilationTopRatingMovieAdapter
@@ -66,7 +64,9 @@ class HomeFragment : Fragment() {
                     progressPopular.isVisible = state.refresh == LoadState.Loading
                 }
                 if (refreshState is LoadState.Error) {
-                    Toast.makeText(requireContext(), R.string.error_load, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(),
+                        R.string.error_load,
+                        Toast.LENGTH_LONG).show()
                 }
             }
             withLoadStateHeaderAndFooter(

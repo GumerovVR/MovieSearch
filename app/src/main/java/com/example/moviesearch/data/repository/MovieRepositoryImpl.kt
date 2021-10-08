@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import com.example.moviesearch.data.local.db.FavouriteMovieDao
 import com.example.moviesearch.data.local.entities.MovieDB
-import com.example.moviesearch.data.network.api.MovieApiService
-import com.example.moviesearch.data.utils.mapping.asMovie
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.repository.MovieRepository
-import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
-import com.example.moviesearch.presentation.adapters.search.SearchMoviePagingSource
+import com.example.moviesearch.data.network.adapters.paging_source.MoviePagingSource
+import com.example.moviesearch.data.network.adapters.paging_source.SearchMoviePagingSource
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
@@ -26,11 +24,11 @@ class MovieRepositoryImpl @Inject constructor(
         return pagingSearchMoviesFactory.create(query)
     }
 
-    override suspend fun AddMovieToDB(movieDB: MovieDB) {
+    override suspend fun addMovieToDB(movieDB: MovieDB) {
         db.insert(movieDB)
     }
 
-    override suspend fun SaveMovieInFavourite(movieDB: MovieDB) {
+    override suspend fun saveMovieInFavourite(movieDB: MovieDB) {
         db.upsert(movieDB)
     }
 
@@ -46,7 +44,7 @@ class MovieRepositoryImpl @Inject constructor(
         return db.getAllMoviesDB()
     }
 
-    override suspend fun ClearNotFavouriteMovies(isFavourite: Boolean) {
+    override suspend fun clearNotFavouriteMovies(isFavourite: Boolean) {
         db.deleteNotFavouriteMovie(isFavourite)
     }
 }

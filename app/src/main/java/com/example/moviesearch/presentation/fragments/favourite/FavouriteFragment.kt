@@ -5,29 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moviesearch.R
-import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.data.utils.mapping.asMovie
 import com.example.moviesearch.databinding.FavouriteFragmentBinding
-import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.favourite.FavouriteAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouriteFragment : Fragment() {
 
     private var _binding: FavouriteFragmentBinding? = null
     private val binding: FavouriteFragmentBinding
         get() = _binding ?: throw RuntimeException("FavouriteFragmentBinding == null")
 
-    private val viewModel: FavouriteViewModel by lazy {
-        val db = AppDatabase
-            .invoke(requireContext()).getFavouriteMovieDao()
-        val repo = Repository(db)
-        ViewModelProvider(this, FavouriteViewModelFactory(repo))
-            .get(FavouriteViewModel::class.java)
-    }
+    private val viewModel: FavouriteViewModel  by viewModels()
+
     private lateinit var favouriteAdapter: FavouriteAdapter
 
     override fun onCreateView(

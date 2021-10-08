@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.moviesearch.databinding.SearchMovieFragmentBinding
 import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SearchMovieFragment : Fragment() {
 
     private var _binding: SearchMovieFragmentBinding? = null
@@ -21,9 +24,7 @@ class SearchMovieFragment : Fragment() {
         get() = _binding ?: throw RuntimeException("SearchMovieFragmentBinding == null")
 
 
-    private val viewModel: SearchMovieViewModel by lazy {
-        ViewModelProvider(this).get(SearchMovieViewModel::class.java)
-    }
+    private val viewModel: SearchMovieViewModel by viewModels()
 
     private lateinit var movieListAdapter: MovieListAdapter
 

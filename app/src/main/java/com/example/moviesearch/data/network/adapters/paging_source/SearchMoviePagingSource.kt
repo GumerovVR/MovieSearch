@@ -1,4 +1,4 @@
-package com.example.moviesearch.presentation.adapters.home
+package com.example.moviesearch.data.network.adapters.paging_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -10,9 +10,9 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import retrofit2.HttpException
 
-class MoviePagingSource @AssistedInject constructor(
+class SearchMoviePagingSource @AssistedInject constructor(
     private val apiService: MovieApiService,
-    @Assisted("sortBy") private val sortBy: String
+    @Assisted("query") private val query: String
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -23,19 +23,22 @@ class MoviePagingSource @AssistedInject constructor(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        return try {
+        if (query.isBlank()) {
+            return LoadResult.Page(emptyList(), prevKey = null, nextKey = null)
+        }
+        try {
             val page = params.key ?: START_PAGE
-            val response = apiService.getMoviesFromNetwork(
-                sortBy = sortBy, page = page
+            val response = apiService.getSearchMoviesFromNetwork(
+                query = query, page = page
             )
-            if (response.isSuccessful) {
+            return if (response.isSuccessful) {
                 val movies = checkNotNull(response.body())
                     .networkMovies.map { it.asMovie() }
                 val nextKey = if (movies.size < DEFAULT_PAGE_SIZE) null else page + 1
                 val prevKey = if (page == START_PAGE) null else page - 1
                 LoadResult.Page(movies, prevKey, nextKey)
             } else {
-                return LoadResult.Error(HttpException(response))
+                LoadResult.Error(HttpException(response))
             }
         } catch (e: HttpException) {
             return LoadResult.Error(e)
@@ -51,6 +54,6 @@ class MoviePagingSource @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(@Assisted("sortBy") sortBy: String): MoviePagingSource
+        fun create(@Assisted("query") query: String): SearchMoviePagingSource
     }
 }

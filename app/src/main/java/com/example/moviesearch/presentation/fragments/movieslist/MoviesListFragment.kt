@@ -7,29 +7,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.LoadState
 import com.example.moviesearch.R
-import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.databinding.MoviesListFragmentBinding
-import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.adapters.home.MoviesLoaderStateAdapter
 import com.example.moviesearch.presentation.adapters.movieslist.MovieListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class MoviesListFragment : Fragment() {
 
     private var _binding: MoviesListFragmentBinding? = null
     private val binding: MoviesListFragmentBinding
         get() = _binding ?: throw RuntimeException("MoviesListFragmentBinding == null")
 
-    private val viewModel: MovieListViewModel by lazy {
-        ViewModelProvider(this).get(MovieListViewModel::class.java)
-    }
+    private val viewModel: MovieListViewModel by viewModels()
     private lateinit var movieListAdapter: MovieListAdapter
 
     private val args: MoviesListFragmentArgs by navArgs()
@@ -69,7 +66,6 @@ class MoviesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.clearNotFavouriteMovies()
         binding.rvMoviesList.apply {
             adapter = movieListAdapter.apply {
                 withLoadStateHeaderAndFooter(
@@ -83,7 +79,9 @@ class MoviesListFragment : Fragment() {
                         progress.isVisible = state.refresh == LoadState.Loading
                     }
                     if (refreshState is LoadState.Error) {
-                        Toast.makeText(requireContext(), R.string.error_load, Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),
+                            R.string.error_load,
+                            Toast.LENGTH_LONG).show()
                     }
                 }
             }

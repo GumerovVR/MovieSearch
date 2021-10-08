@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.domain.use_cases.GetCategoryMoviesUseCase
-import com.example.moviesearch.presentation.adapters.home.MoviePagingSource
+import com.example.moviesearch.data.network.adapters.paging_source.MoviePagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

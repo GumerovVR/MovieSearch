@@ -6,9 +6,9 @@ import com.example.moviesearch.data.local.entities.MovieDB
 import com.example.moviesearch.domain.entities.Movie
 
 interface MovieRepository {
-    suspend fun AddMovieToDB(movieDB: MovieDB)
+    suspend fun addMovieToDB(movieDB: MovieDB)
 
-    suspend fun SaveMovieInFavourite(movieDB: MovieDB)
+    suspend fun saveMovieInFavourite(movieDB: MovieDB)
 
     suspend fun getMovieInDB(id: Int): MovieDB
 
@@ -16,6 +16,6 @@ interface MovieRepository {
 
     fun getAllFavouriteMovies(): LiveData<List<MovieDB>>
 
-    suspend fun ClearNotFavouriteMovies(isFavourite: Boolean)
+    suspend fun clearNotFavouriteMovies(isFavourite: Boolean)
 
 }
