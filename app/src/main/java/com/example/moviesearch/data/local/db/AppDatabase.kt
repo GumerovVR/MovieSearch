@@ -27,5 +27,6 @@ abstract class AppDatabase : RoomDatabase() {
             DB_NAME
         ).fallbackToDestructiveMigration().build()
     }
+
     abstract fun getFavouriteMovieDao(): FavouriteMovieDao
 }

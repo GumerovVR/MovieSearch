@@ -1,19 +1,26 @@
 package com.example.moviesearch.presentation.fragments.favourite
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.moviesearch.domain.repository.Repository
+import androidx.lifecycle.*
+import com.example.moviesearch.data.local.entities.MovieDB
+import com.example.moviesearch.domain.use_cases.ClearNotFavouriteMoviesUseCase
+import com.example.moviesearch.domain.use_cases.GetAllFavouriteMoviesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavouriteViewModel(private val repo: Repository) : ViewModel() {
+@HiltViewModel
+class FavouriteViewModel @Inject constructor(
+    private val getAllFavouriteMoviesUseCase: GetAllFavouriteMoviesUseCase,
+    private val deleteNotFavouriteMoviesUseCase: ClearNotFavouriteMoviesUseCase
+    ) : ViewModel() {
 
     fun clearNotFavouriteMovies() {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.deleteNotFavouriteMovie(false)
+            deleteNotFavouriteMoviesUseCase(false)
         }
     }
 
-    fun getFavouriteMovies() = repo.getAllMoviesDB()
+    fun getFavouriteMovies() = getAllFavouriteMoviesUseCase()
 
 }
