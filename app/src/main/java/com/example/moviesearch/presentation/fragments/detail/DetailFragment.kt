@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.moviesearch.R
 import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.databinding.DetailFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
-import com.example.moviesearch.domain.repository.Repository
 import com.example.moviesearch.presentation.utils.checkVoteAverage
 import com.example.moviesearch.presentation.utils.setNetworkImage
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment : Fragment() {
 
     private var _binding: DetailFragmentBinding? = null
@@ -25,12 +27,7 @@ class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
     private var movie: Movie? = null
 
-    private val viewModel: DetailViewModel by lazy {
-        val db = AppDatabase.invoke(requireContext()).getFavouriteMovieDao()
-        val repo = Repository(db)
-        ViewModelProvider(this, DetailViewModelFactory(repo))
-            .get(DetailViewModel::class.java)
-    }
+    private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
