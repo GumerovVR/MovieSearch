@@ -17,7 +17,7 @@ fun NetworkMovie.asMovie(): Movie {
             ?: "",
         originalTitle = this.originalTitle ?: "",
         overview = this.overview ?: "",
-        releaseDate = this.posterPath ?: "",
+        releaseDate = this.releaseDate ?: "",
         voteAverage = this.voteAverage ?: 0.0
     )
 }

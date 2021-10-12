@@ -58,6 +58,7 @@ class DetailFragment : Fragment() {
             movieInfo.tvOriginalName.text = movie?.originalTitle
             movieInfo.tvRatingDetail.text = movie?.voteAverage?.checkVoteAverage()
             movieInfo.tvOverview.text = movie?.overview
+            movieInfo.tvDate.text = movie?.releaseDate?.substring(0,4)
         }
     }
 
