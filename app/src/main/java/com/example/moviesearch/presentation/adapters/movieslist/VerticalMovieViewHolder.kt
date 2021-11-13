@@ -3,6 +3,7 @@ package com.example.moviesearch.presentation.adapters.movieslist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesearch.R
 import com.example.moviesearch.databinding.MovieItemBinding
 import com.example.moviesearch.domain.entities.Movie
 import com.example.moviesearch.presentation.utils.checkVoteAverage
@@ -14,9 +15,18 @@ class VerticalMovieViewHolder(private val binding: MovieItemBinding) :
 
     fun bind(movie: Movie) {
         with(binding) {
-            tvTitleName.text = movie.title
-            tvMovieRatingScore.text = movie.voteAverage.checkVoteAverage()
-            ivSmallPoster.setNetworkImage(movie.posterSmallSize)
+            if (movie.voteAverage > 7.0) {
+                tvTitleName.text = movie.title
+                tvMovieRatingScore.text = movie.voteAverage.checkVoteAverage()
+                tvMovieRatingScore.setBackgroundResource(R.color.score_purple)
+                ivSmallPoster.setNetworkImage(movie.posterSmallSize)
+            } else {
+                tvTitleName.text = movie.title
+                tvMovieRatingScore.text = movie.voteAverage.checkVoteAverage()
+                tvMovieRatingScore.setBackgroundResource(R.color.score_grey)
+                ivSmallPoster.setNetworkImage(movie.posterSmallSize)
+            }
+
         }
     }
 

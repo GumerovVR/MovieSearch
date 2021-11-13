@@ -16,6 +16,10 @@ class MovieListAdapter(private val onClick: (Movie) -> Unit) :
         return viewHolder
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
+
     override fun onBindViewHolder(holder: VerticalMovieViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }

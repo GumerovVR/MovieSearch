@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetCategoryMoviesUseCase @Inject constructor(
     private val repository: MovieRepositoryImpl
 ) {
-    operator fun invoke(sortBy: String): PagingSource<Int, Movie> {
-        return repository.getCategoryMovies(sortBy = sortBy)
+    operator fun invoke(sortBy: String, lang: String): PagingSource<Int, Movie> {
+        return repository.getCategoryMovies(sortBy = sortBy, lang = lang)
     }
 }
