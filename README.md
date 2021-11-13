@@ -25,7 +25,7 @@ API: https://api.themoviedb.org
 Информация о реализации:
 
 - Управление в проекте производилось в Jira[[Скриншот](https://user-images.githubusercontent.com/75484199/141645470-cd438d80-cc70-4d6d-8ba1-e5b6dd8c5c9c.jpg)];
-- В Git модель вветвления была выбрана: Gitflow.
+- В Git модель ветвления была выбрана: Gitflow.
 #
 ## Стек технологий
 -	Kotlin
@@ -41,7 +41,7 @@ API: https://api.themoviedb.org
 #
 ## Ссылки
 ### [Демо видео функционала приложения](https://www.youtube.com/watch?v=3p4drjZkk2w)
-### [APK](https://drive.google.com/file/d/1ubxEfn7bmhNZ2chgMDLQofAnMCEnINi8/view?usp=sharing)
+### [APK](https://drive.google.com/file/d/1I1__jRlLMNj__Rhip9ocvJGvgOqJ0bhf/view?usp=sharing)
 ### [Jira](https://user-images.githubusercontent.com/75484199/141645470-cd438d80-cc70-4d6d-8ba1-e5b6dd8c5c9c.jpg)
 #
 ## Примечание
