@@ -12,7 +12,8 @@ import retrofit2.HttpException
 
 class MoviePagingSource @AssistedInject constructor(
     private val apiService: MovieApiService,
-    @Assisted("sortBy") private val sortBy: String
+    @Assisted("sortBy") private val sortBy: String,
+    @Assisted("lang") private val lang: String,
 ) : PagingSource<Int, Movie>() {
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
@@ -26,7 +27,7 @@ class MoviePagingSource @AssistedInject constructor(
         return try {
             val page = params.key ?: START_PAGE
             val response = apiService.getMoviesFromNetwork(
-                sortBy = sortBy, page = page
+                sortBy = sortBy,lang = lang, page = page
             )
             if (response.isSuccessful) {
                 val movies = checkNotNull(response.body())
@@ -51,6 +52,7 @@ class MoviePagingSource @AssistedInject constructor(
 
     @AssistedFactory
     interface Factory {
-        fun create(@Assisted("sortBy") sortBy: String): MoviePagingSource
+        fun create(@Assisted("sortBy") sortBy: String,
+                   @Assisted("lang") lang: String): MoviePagingSource
     }
 }

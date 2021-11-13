@@ -15,6 +15,10 @@ class FavouriteViewModel @Inject constructor(
     private val deleteNotFavouriteMoviesUseCase: ClearNotFavouriteMoviesUseCase
     ) : ViewModel() {
 
+    init {
+
+    }
+
     fun clearNotFavouriteMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             deleteNotFavouriteMoviesUseCase(false)

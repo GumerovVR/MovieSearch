@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieSearch</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pop_movies">Популярные фильмы</string>
+    <string name="favourite">Избранное</string>
+    <string name="movies">Фильмы</string>
+    <string name="search">Поиск</string>
+    <string name="search_movie">Поиск фильма</string>
+    <string name="poster_content_description">Постер к фильму</string>
+    <string name="label_movie">Название фильма</string>
+    <string name="error_result">Результаты не могут быть загружены</string>
+    <string name="retry">повторить</string>
+    <string name="error_load">Ошибка загрузки данных с сервера\nПроверьте подключение к сети</string>
+    <string name="add_to_favourite">Добавлено в избранное</string>
+    <string name="delete_favourite">Удалено из избранного</string>
+    <string name="popular_label">Популярные</string>
+    <string name="top_rating_label">Топ рейтинга</string>
+    <string name="revenue_label">Самые кассовые</string>
+    <string name="popular_cd">Показать все популярные фильмы</string>
+    <string name="top_rating_cd">Показать все фильмы с наивышим рейтингом</string>
+    <string name="revenue_cd">показать все самые кассовые фильмы</string>
+    <string name="not_overview">Описание отсутствует</string>
+    <string name="original_title_label">Оригинальное название:</string>
+    <string name="rating_label">Рейтинг:</string>
+    <string name="year_of_issue_label">Год выпуска:</string>
+    <string name="cd_play">Воспроизвести трейлер</string>
+</resources>

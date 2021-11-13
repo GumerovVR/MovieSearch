@@ -10,4 +10,7 @@
     <color name="background_rating">#9FA8DA</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="split_line">#ACA9A9</color>
+    <color name="grey">#CFCFCF</color>
+    <color name="score_purple">#9FA8DA</color>
+    <color name="score_grey">#8E8E8E</color>
 </resources>

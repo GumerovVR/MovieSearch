@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:focusable="true"
+        android:contentDescription="@string/cd_play"
+        android:src="@drawable/ic_baseline_play_circle_filled_24"
+        app:layout_constraintStart_toStartOf="@id/cvTrailerItem"
+        app:layout_constraintEnd_toEndOf="@id/cvTrailerItem"
+        app:layout_constraintTop_toTopOf="@id/cvTrailerItem"
+        app:layout_constraintBottom_toBottomOf="@id/cvTrailerItem"
+        android:elevation="8dp"/>
+
+    <TextView
+        android:id="@+id/tvTrailerName"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/cvTrailerItem"
+        app:layout_constraintEnd_toEndOf="@id/cvTrailerItem"
+        app:layout_constraintTop_toTopOf="@id/cvTrailerItem"
+        android:layout_margin="8dp"
+        android:elevation="8dp"
+        android:textStyle="bold"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvTrailerItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1.3:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/ivTrailerThumbnail"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/poster_content_description"
+            android:src="@drawable/ic_baseline_image_24" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
