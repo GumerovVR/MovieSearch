@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.moviesearch.data.local.entities.MovieDB
 
-@Database(entities = [MovieDB::class], version = 8, exportSchema = false)
+@Database(entities = [MovieDB::class], version = 9, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {

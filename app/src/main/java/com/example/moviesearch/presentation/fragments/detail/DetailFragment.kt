@@ -1,5 +1,7 @@
 package com.example.moviesearch.presentation.fragments.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.moviesearch.R
-import com.example.moviesearch.data.local.db.AppDatabase
 import com.example.moviesearch.databinding.DetailFragmentBinding
 import com.example.moviesearch.domain.entities.Movie
+import com.example.moviesearch.presentation.adapters.trailer.TrailerAdapter
 import com.example.moviesearch.presentation.utils.checkVoteAverage
 import com.example.moviesearch.presentation.utils.setNetworkImage
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,8 @@ class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels()
 
+    private lateinit var trailerAdapter: TrailerAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         movie = args.movie
@@ -39,10 +42,12 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DetailFragmentBinding.inflate(layoutInflater)
-        setupUI()
+        movie?.let { observeTrailers(it.id) }
         movie?.let { movieToDB(it) }
-        fabListener()
         toastListener()
+        fabListener()
+        setupTrailerAdapter()
+        setupUI()
         return binding.root
     }
 
@@ -57,8 +62,10 @@ class DetailFragment : Fragment() {
             movieInfo.tvTitleName.text = movie?.title
             movieInfo.tvOriginalName.text = movie?.originalTitle
             movieInfo.tvRatingDetail.text = movie?.voteAverage?.checkVoteAverage()
-            movieInfo.tvOverview.text = movie?.overview
+            if (movie?.overview?.length ?: 0 > 1){ movieInfo.tvOverview.text = movie?.overview }
+            else movieInfo.tvOverview.text = requireContext().getText(R.string.not_overview)
             movieInfo.tvDate.text = movie?.releaseDate?.substring(0,4)
+            movieInfo.rvTrailers.adapter = trailerAdapter
         }
     }
 
@@ -76,6 +83,20 @@ class DetailFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), R.string.delete_favourite, Toast.LENGTH_SHORT).show()
             }
+        })
+    }
+
+    private fun setupTrailerAdapter() {
+        trailerAdapter = TrailerAdapter {
+            val intentToTrailer = Intent(Intent.ACTION_VIEW, Uri.parse(it.url))
+            startActivity(intentToTrailer)
+        }
+    }
+
+    private fun observeTrailers(movieId: Int) {
+        viewModel.getTrailers(movieId)
+        viewModel.trailer.observe(viewLifecycleOwner, {
+            trailerAdapter.submitList(it)
         })
     }
 

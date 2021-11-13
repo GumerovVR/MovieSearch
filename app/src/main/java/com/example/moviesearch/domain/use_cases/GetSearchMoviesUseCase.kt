@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetSearchMoviesUseCase @Inject constructor(
     private val repository: MovieRepositoryImpl
 ) {
-    operator fun invoke(query: String): PagingSource<Int, Movie> {
-        return repository.getSearchMovies(query)
+    operator fun invoke(query: String, lang: String): PagingSource<Int, Movie> {
+        return repository.getSearchMovies(query, lang = lang)
     }
 }

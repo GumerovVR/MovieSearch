@@ -27,7 +27,6 @@
             android:layout_height="match_parent"
             android:textStyle="bold"
             android:paddingHorizontal="8dp"
-            android:background="@color/background_rating"
             android:textColor="@color/white"/>
 
     </androidx.cardview.widget.CardView>
